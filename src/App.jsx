@@ -23,7 +23,7 @@ function App() {
                 <Route path="/details/:id" element={<UserDetails />} />
                 <Route path="/*" element={<Pnf />} />
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }
