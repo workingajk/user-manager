@@ -11,7 +11,9 @@ function Header() {
     let user = null;
 
     try {
-        user = currUser ? JSON.parse(localStorage.getItem(currUser) || "null") : null;
+        user = currUser
+            ? JSON.parse(localStorage.getItem(currUser) || "null")
+            : null;
     } catch {
         user = null;
     }
@@ -33,17 +35,22 @@ function Header() {
                     />{" "}
                     User Manager
                 </Navbar.Brand>
-                                {!user ? (
-                    ""
+                {!user ? (
+                    <span>
+                        <Button onClick={() => nav("/login")}>Login</Button>
+                        <span className="px-2"></span>
+                        <Button onClick={() => nav("/register")}>Register</Button>
+                    </span>
                 ) : (
                     <div>
-                      <span className="p-3">
-                        Welcome,{" "}
-                                                {user.name || "User"}{"  "}
-                              </span>
-                        
-                        <Button className="ml-5" onClick={logout}>Logout</Button>
+                        <span className="p-3">
+                            Welcome, {user.name || "User"}
+                            {"  "}
+                        </span>
 
+                        <Button className="ml-5" onClick={logout}>
+                            Logout
+                        </Button>
                     </div>
                 )}
             </Container>

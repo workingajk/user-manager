@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -9,6 +9,11 @@ function Register() {
     let [mail, setMail] = useState("");
     let [pwd, setPwd] = useState("");
     const nav = useNavigate();
+    useEffect(
+        () => localStorage.setItem("currUser", ""),
+
+        [],
+    );
 
     function register() {
         let customer = {
@@ -42,7 +47,7 @@ function Register() {
             <Row>
                 <Col></Col>
                 <Col>
-<h1 className="text-center">Register</h1>
+                    <h1 className="text-center">Register</h1>
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>User Name</Form.Label>
