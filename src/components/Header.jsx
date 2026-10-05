@@ -7,6 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
     const nav = useNavigate();
+    const currUser = localStorage.getItem("currUser");
+    let user = null;
+
+    try {
+        user = currUser ? JSON.parse(localStorage.getItem(currUser) || "null") : null;
+    } catch {
+        user = null;
+    }
+
     let logout = () => {
         localStorage.setItem("currUser", "");
         nav("/login");
@@ -24,19 +33,13 @@ function Header() {
                     />{" "}
                     User Manager
                 </Navbar.Brand>
-                {localStorage.getItem("currUser") == "" ? (
+                                {!user ? (
                     ""
                 ) : (
                     <div>
                       <span className="p-3">
                         Welcome,{" "}
-                        {
-                          JSON.parse(
-                            localStorage.getItem(
-                                    localStorage.getItem("currUser"),
-                                ),
-                              ).name
-                        }{"  "}
+                                                {user.name || "User"}{"  "}
                               </span>
                         
                         <Button className="ml-5" onClick={logout}>Logout</Button>
